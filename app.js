@@ -12,7 +12,8 @@ var accountRouter = require('./routes/account');
 var compression = require('compression');
 var helmet = require('helmet');
 var app = express();
-app.use(helmet());
+
+//app.use(helmet());
 
 //For Hashing
 var bcrypt = require('bcryptjs');
@@ -44,7 +45,7 @@ app.use(function(req, res, next){
 	next()
 })
 
-app.use(compression()); //Compress all routes
+//app.use(compression()); //Compress all routes
 app.use(logger('tiny'));
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: false}))
