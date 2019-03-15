@@ -22,7 +22,7 @@ var salt = bcrypt.genSaltSync(10);
 //For api
 const jsonwebtoken = require('jsonwebtoken')
 
-var functionExport = require("../myTrainingDiaryV2/modules/functionExport")
+var functionExport = require("./modules/functionExport")
 
 functionExport.default.SetDatabaseImp(0);
 
