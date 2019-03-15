@@ -1,0 +1,17 @@
+<h1>Trainings</h1>
+{{#if isUserTraining}}
+<form action="/account/create-training" action="GET">
+    <button id="buttonTrainingsWeight" value="Create Training">Create Training</button>
+</form>
+{{/if}}
+{{#if trainings}}
+{{#each trainings}}
+<div style="border: 1px solid black; margin: 5px;">
+    <div>Start : {{start}}</div>
+    <div>Stop : {{stop}}</div>
+    <div>Description : {{description}}</div>
+</div>
+{{/each}}
+{{else}}
+	<p>The user have no trainings.</p>
+{{/if}}

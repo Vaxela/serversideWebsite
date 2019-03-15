@@ -1,0 +1,21 @@
+<h1>Login</h1>
+
+{{#if errors.length}}
+<p>Could not sign in because:</p>
+<ul>
+    {{#each errors}}
+    <li>{{this}}</li>
+    {{/each}}
+</ul>
+{{/if}}
+
+<form action="/login" method="POST">
+    <div>
+        Username: <input type="text" name="username" id="usernameLogin" value="{{username}}" required>
+    </div>
+    <div>
+        Password: <input type="password" id="passwordLogin" name="password" required>
+    </div>
+    <input type="submit" value="Login">
+</form>
+<p>You do not have an account: <a href="/register">Register</a></p>

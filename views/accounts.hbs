@@ -1,0 +1,11 @@
+<h1>Members!</h1>
+
+<ul style="padding-inline-end: 40px" >
+    {{#each accounts}}
+    <div style="border: 1px solid black; margin: 5px;">
+            <div>Username : <a href="/accounts/{{id}}">{{username}}</a>.</div>
+            <div>Birthdate : {{birthDate}}</div>
+            <div>City : {{city}}</div>
+        </div>
+    {{/each}}
+</ul>

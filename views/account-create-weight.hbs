@@ -1,0 +1,20 @@
+<h1>Create Weight</h1>
+
+{{#if errors.length}}
+<p>Could not create weight because:</p>
+<ul>
+    {{#each errors}}
+    <li>{{this}}</li>
+    {{/each}}
+</ul>
+{{/if}}
+
+<form action="/account/create-weight" method="POST">
+    <div>
+        Time: <input type="datetime-local" name="time" min="2019-00-00T00:00" required>
+    </div>
+    <div>
+        Weight: <input type="text" name="weight" required>
+    </div>
+    <input type="submit" value="Create weight" required>
+</form>

@@ -1,0 +1,24 @@
+<h1>Create Training</h1>
+
+{{#if errors.length}}
+	<p>Errors:</p>
+	<ul>
+		{{#each errors}}
+			<li>{{this}}</li>
+		{{/each}}
+	</ul>
+{{/if}}
+
+<form action="/account/create-training" method="POST">
+    <div>
+        Start: <input type="datetime-local" name="start" min="2019-00-00T00:00" required> 
+    </div>
+    <div>
+        Stop: <input type="datetime-local" name="stop" min="2019-00-00T00:00" required>
+    </div>
+    <div>
+        Training description: <input type="text" name="description" required>
+    </div>
+    <input type="submit" value="Create training">
+	
+</form>
