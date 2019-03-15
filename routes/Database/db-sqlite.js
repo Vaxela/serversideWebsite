@@ -33,11 +33,11 @@ CREATE TABLE IF NOT EXISTS "Weights" (
 )
 `)
 
-exports.getAllAccounts = function(callback){
-	const query = "SELECT * FROM Accounts"
-	const values = []
-	
-	db.all(query, values, function (error, accounts) {
+exports.getAllAccounts = function (callback) {
+    const query = "SELECT * FROM Accounts"
+    const values = []
+
+    db.all(query, values, function (error, accounts) {
         if (error) {
             callback(["Database error"])
         } else {
@@ -46,14 +46,14 @@ exports.getAllAccounts = function(callback){
     })
 }
 
-exports.getAccountByUsername = function(username, callback){
-	const query = "SELECT * FROM Accounts WHERE username = ?"
+exports.getAccountByUsername = function (username, callback) {
+    const query = "SELECT * FROM Accounts WHERE username = ?"
     const values = [username]
 
     db.get(query, values, function (error, account) {
         if (error) {
-			console.log("Error: ")
-			console.log(error)
+            console.log("Error: ")
+            console.log(error)
             callback(["Database error : " + error.message])
         } else {
             callback([], account)
@@ -61,8 +61,8 @@ exports.getAccountByUsername = function(username, callback){
     })
 }
 
-exports.getAccountById = function(id, callback){
-	const query = "SELECT * FROM Accounts WHERE id = ?"
+exports.getAccountById = function (id, callback) {
+    const query = "SELECT * FROM Accounts WHERE id = ?"
     const values = [id]
 
     db.get(query, values, function (error, account) {
@@ -75,10 +75,10 @@ exports.getAccountById = function(id, callback){
 }
 
 
-exports.createAccount = function(username, password, birthdate, city, callback){
-	
-	const query = `INSERT INTO Accounts (username, password, birthDate, city) VALUES (?, ?, ?, ?)`
-    
+exports.createAccount = function (username, password, birthdate, city, callback) {
+
+    const query = `INSERT INTO Accounts (username, password, birthDate, city) VALUES (?, ?, ?, ?)`
+
     const values = [username, password, birthdate, city]
 
     db.run(query, values, function (error) {
@@ -86,16 +86,18 @@ exports.createAccount = function(username, password, birthdate, city, callback){
             if (error.message == "SQLITE_CONSTRAINT: UNIQUE constraint failed: Accounts.username") {
                 callback(["Username already in use!"])
             } else {
-                callback(["Database error: "+ error.message])
+                callback(["Database error: " + error.message])
             }
         } else {
-			let result = {id : this.lastID}
+            let result = {
+                id: this.lastID
+            }
             callback([], result)
         }
     })
 }
 
-  exports.createTrainingsForAccount = function(accountId, start, stop, description, callback){
+exports.createTrainingsForAccount = function (accountId, start, stop, description, callback) {
     const query = `INSERT INTO Trainings (accountId, start, stop, description) VALUES (?, ?, ?, ?)`
     const values = [accountId, start, stop, description]
 
@@ -106,9 +108,9 @@ exports.createAccount = function(username, password, birthdate, city, callback){
             callback([], this.lastID)
         }
     })
-  }
+}
 
-  exports.getTrainingsByAccountId = function (id, callback){
+exports.getTrainingsByAccountId = function (id, callback) {
     const query = "SELECT * FROM Trainings WHERE accountId = ?"
     const values = [id]
 
@@ -119,9 +121,9 @@ exports.createAccount = function(username, password, birthdate, city, callback){
             callback([], trainings)
         }
     })
-  }
+}
 
-  exports.createWeightForAccount = function(accountId, time, weight, callback){
+exports.createWeightForAccount = function (accountId, time, weight, callback) {
     const query = `INSERT INTO Weights (accountId, time, weight) VALUES (?, ?, ?)`
     const values = [accountId, time, weight]
 
@@ -132,10 +134,10 @@ exports.createAccount = function(username, password, birthdate, city, callback){
             callback([], this.lastID)
         }
     })
-  }
+}
 
-  exports.getWeightByAccountId = function (id, callback){
-	const query = "SELECT * FROM Weights WHERE accountId = ?"
+exports.getWeightByAccountId = function (id, callback) {
+    const query = "SELECT * FROM Weights WHERE accountId = ?"
     const values = [id]
 
     db.all(query, values, function (error, weights) {
@@ -145,5 +147,4 @@ exports.createAccount = function(username, password, birthdate, city, callback){
             callback([], weights)
         }
     })
-  }
-
+}

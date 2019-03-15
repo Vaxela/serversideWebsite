@@ -1,148 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title>CSS Template</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
+  <title>CSS Template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
 
 
-article {
-  float: left;
-  padding: 20px;
-  width: 100%;
-  margin-top: 10px;
-  overflow-y: scroll;
+    article {
+      float: left;
+      padding: 20px;
+      width: 100%;
+      margin-top: 10px;
+      overflow-y: scroll;
 
-  background-color: #e2d1d1;
-  height: 300px; /* only for demonstration, should be removed */
-}
+      background-color: #e2d1d1;
+      height: 300px;
+      /* only for demonstration, should be removed */
+    }
 
-/* Clear floats after the columns */
-section:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+    /* Clear floats after the columns */
+    section:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
 
 
 
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
-  nav, article {
-    width: 100%;
-    height: auto;
-  }
-}
-</style>
+    /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+    @media (max-width: 600px) {
 
-<script type="text/javascript">
-<!--
-   
- function toggle_visibility(id) {
-       var t = document.getElementById("foo");
-       var w = document.getElementById("bar");
+      nav,
+      article {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
 
-       var btT = document.getElementById("buttonTrainings");
-       var btW = document.getElementById("buttonWeights");
-       
-       if(id == "foo" && t.style.display == 'block'){
+  <script type="text/javascript">
+< !--
+
+      function toggle_visibility(id) {
+        var t = document.getElementById("foo");
+        var w = document.getElementById("bar");
+
+        var btT = document.getElementById("buttonTrainings");
+        var btW = document.getElementById("buttonWeights");
+
+        if (id == "foo" && t.style.display == 'block') {
           t.style.display = 'none';
           btT.style.backgroundColor = "#333333";
-       }
-       else if (id == "foo"){
+        }
+        else if (id == "foo") {
           t.style.display = 'block';
           btT.style.backgroundColor = "blue";
           w.style.display = 'none';
           btW.style.backgroundColor = "#333333";
 
-       }
-        if(id == "bar" && w.style.display == 'block'){
+        }
+        if (id == "bar" && w.style.display == 'block') {
           btW.style.backgroundColor = "#333333";
           w.style.display = 'none';
-       }
-        else if (id == "bar"){
+        }
+        else if (id == "bar") {
           w.style.display = 'block';
           btW.style.backgroundColor = "blue";
           t.style.display = 'none';
           btT.style.backgroundColor = "#333333";
-       }
-    }
+        }
+      }
 
-    
+
 //-->
-</script>
+  </script>
 </head>
+
 <body>
-    {{#if errors.length}}
-<p>Could not load account because:</p>
-<ul>
+  {{#if errors.length}}
+  <p>Could not load account because:</p>
+  <ul>
     {{#each errors}}
     <li>{{this}}</li>
     {{/each}}
-</ul>
-{{/if}}
+  </ul>
+  {{/if}}
 
-{{#if account}}
-<h2>Account</h2>
-<p>Username : {{account.username}}</p>
-<p>Password : {{account.password}}</p>
+  {{#if account}}
+  <h2>Account</h2>
+  <p>Username : {{account.username}}</p>
+  <p>Password : {{account.password}}</p>
 
- <div class="wrapper">
-         <li style="display: block" >
-          <a id="buttonTrainings" href="#" onclick="toggle_visibility('foo');">Trainings</a>
-          <a id="buttonWeights" href="#" onclick="toggle_visibility('bar');">Weights</a>
-         </li>
-</div>
+  <div class="wrapper">
+    <li style="display: block">
+      <a id="buttonTrainings" href="#" onclick="toggle_visibility('foo');">Trainings</a>
+      <a id="buttonWeights" href="#" onclick="toggle_visibility('bar');">Weights</a>
+    </li>
+  </div>
 
-<section>
-  
-  <article id="foo" style="display: none" >
-   <h1>Trainings</h1>
-{{#if isUserTraining}}
-<form style="margin-bottom: 20px" action="/account/create-training" action="GET">
-    <button id="buttonTrainingsWeight" value="Create Training">Create Training</button>
-</form>
-{{/if}}
-{{#if trainings}}
-{{#each trainings}}
-<div style="border: 1px solid black; margin: 5px;">
-    <div>Start : {{start}}</div>
-    <div>Stop : {{stop}}</div>
-    <div>Description : {{description}}</div>
-</div>
-{{/each}}
-{{else}}
-	<p>The user have no trainings.</p>
-{{/if}}
-  </article>
-  <article id="bar" style="display: none" >
-   <h1>Weights</h1>
-    {{#if isUserWeight}}
-    <form style="margin-bottom: 20px" action="/account/create-weight" action="GET">
-    <button id="buttonTrainingsWeight" value="Create Training">Create Weight</button>
-</form>
-{{/if}}
+  <section>
 
-{{#if weights}}
-{{#each weights}}
-<div style="border: 1px solid black; margin: 5px;">
-    <div>Time : {{time}}</div>
-    <div>Weight : {{weight}}</div>
-</div>
-{{/each}}
-{{else}}
-	<p>The user have no weights</p>
-{{/if}}
-  </article>
-</section>
-{{else}}
-	<p>No account exists with this id.</p>
-{{/if}}
+    <article id="foo" style="display: none">
+      <h1>Trainings</h1>
+      {{#if isUserTraining}}
+      <form style="margin-bottom: 20px" action="/account/create-training" action="GET">
+        <button id="buttonTrainingsWeight" value="Create Training">Create Training</button>
+      </form>
+      {{/if}}
+      {{#if trainings}}
+      {{#each trainings}}
+      <div style="border: 1px solid black; margin: 5px;">
+        <div>Start : {{start}}</div>
+        <div>Stop : {{stop}}</div>
+        <div>Description : {{description}}</div>
+      </div>
+      {{/each}}
+      {{else}}
+      <p>The user have no trainings.</p>
+      {{/if}}
+    </article>
+    <article id="bar" style="display: none">
+      <h1>Weights</h1>
+      {{#if isUserWeight}}
+      <form style="margin-bottom: 20px" action="/account/create-weight" action="GET">
+        <button id="buttonTrainingsWeight" value="Create Training">Create Weight</button>
+      </form>
+      {{/if}}
+
+      {{#if weights}}
+      {{#each weights}}
+      <div style="border: 1px solid black; margin: 5px;">
+        <div>Time : {{time}}</div>
+        <div>Weight : {{weight}}</div>
+      </div>
+      {{/each}}
+      {{else}}
+      <p>The user have no weights</p>
+      {{/if}}
+    </article>
+  </section>
+  {{else}}
+  <p>No account exists with this id.</p>
+  {{/if}}
 
 </body>
+
 </html>

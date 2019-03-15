@@ -35,19 +35,21 @@ app.engine('hbs', expressHandlebars({
 
 app.use(session({
   resave: true,
-saveUninitialized: true,
-secret: "somerandomtextgjozudbe"
+  saveUninitialized: true,
+  secret: "somerandomtextgjozudbe"
 }))
 
-app.use(function(req, res, next){
-	res.locals.session = req.session
-	next()
+app.use(function (req, res, next) {
+  res.locals.session = req.session
+  next()
 })
 
 app.use(compression()); //Compress all routes
 app.use(logger('tiny'));
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({
+  extended: false
+}))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -56,12 +58,12 @@ app.use('/accounts', accountsRouter);
 app.use('/account', accountRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

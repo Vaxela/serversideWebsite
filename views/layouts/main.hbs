@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title >My Training Diary</title>
-	<link rel="stylesheet" href="/stylesheets/layout.css">
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My Training Diary</title>
+  <link rel="stylesheet" href="/stylesheets/layout.css">
+
 </head>
-<body >
-    
-	<div id="page">
+
+<body>
+
+  <div id="page">
     <header>My Training Diary</header>
-   <nav>
+    <nav>
 
-	<ul id="ul01">
-      <li id="li02"><a id="a03" href="/">Home</a></li> 
-       {{#if session.accountId}}
+      <ul id="ul01">
+        <li id="li02"><a id="a03" href="/">Home</a></li>
+        {{#if session.accountId}}
         <li id="li02"><a id="a03" href="/accounts">Members</a></li>
-      {{/if}}
-  </ul>
+        {{/if}}
+      </ul>
 
-	<ul id="ul01">
-      {{#if session.accountId}}
-					<li id="li02"><a id="a03" href="/accounts/{{session.accountId}}">My account</a></li>
-					<li id="li02"><a id="a03" href="/disconnect">Disconnect</a></li>
-				{{else}}
-					<li id="li02"><a id="a03" href="/login">Login</a></li>
-				{{/if}}
-    </ul>
+      <ul id="ul01">
+        {{#if session.accountId}}
+        <li id="li02"><a id="a03" href="/accounts/{{session.accountId}}">My account</a></li>
+        <li id="li02"><a id="a03" href="/disconnect">Disconnect</a></li>
+        {{else}}
+        <li id="li02"><a id="a03" href="/login">Login</a></li>
+        {{/if}}
+      </ul>
     </nav>
-          <main>
-            {{{body}}}
-          </main>
-          <footer >
-			Copyright © 2019 Vaxela | <a href="/about">About</a> | <a href="/contact">Contact</a>
-		</footer>
-    </div>
+    <main>
+      {{{body}}}
+    </main>
+    <footer>
+      Copyright © 2019 Vaxela | <a href="/about">About</a> | <a href="/contact">Contact</a>
+    </footer>
+  </div>
 
 </body>
 
